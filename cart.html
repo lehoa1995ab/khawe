@@ -1,0 +1,211 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /*  .main{
+        margin: 0 auto;
+        width: 500px;
+    } */
+        h2 {
+            text-align: center;
+            margin: 30px 0px;
+        }
+
+        table tr td {
+            padding: 20px;
+        }
+
+        .quantity {
+            display: flex;
+            align-items: center;
+            min-height: 150px;
+        }
+
+        .material-symbols-outlined {
+            margin: 0px 10px;
+        }
+
+        table tr td img {
+            width: 100px;
+            height: 100px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="main">
+        <h2> DANH MỤC SẢN PHẨM ĐÃ MUA </h2>
+        <table border="1px" cellspacing="10px" cellpadding="15px" id="render">
+             <!-- <tr>
+            <th> STT </th>
+            <th> Tên Sản phẩm </th>
+            <th> Giá </th>
+            <th> Số lượng </th>
+            <th> Tiền </th>
+            <th> Xoá </th>
+           </tr>  -->
+           <!--  <tr>
+                <td>1</td>
+                <td>iphone </td>
+                <td>30000</td>
+                <td class="quantity">
+                    <span class="material-symbols-outlined">
+                        remove
+                    </span>
+                    5
+                    <span class="material-symbols-outlined">
+                        add
+                    </span>
+                </td>
+                <td>
+                    2255454
+                </td>
+                <td>
+                    <span class="material-symbols-outlined">
+                        delete
+                    </span>
+                </td>
+            </tr>   -->
+        </table>
+
+    </div>
+    <script>
+        // hàm convert tiền tệ
+        const USDollar = new Intl.NumberFormat('en-US', {
+            style: 'currency',
+            currency: 'USD',
+        });
+        const VND = new Intl.NumberFormat('vi-VN', {
+            style: 'currency',
+            currency: 'VND',
+        });
+        // console.log('Dollars: ' + USDollar.format(price)); // Dollars: $21,450.00
+        // console.log('Việt Nam đồng: ' + VND.format(price)); // Việt Nam đồng: 21.450 ₫
+
+        // function show cart
+        function showCartUser() {
+           //lấy ra id khi login
+           let idLogin=localStorage.getItem("checkLogin");
+           //lấy listUser ra
+           let listUsers=JSON.parse(localStorage.getItem("listUser"));
+           for (let i = 0; i < listUsers.length; i++) {
+                    if(listUsers[i].idUser==idLogin){
+                        //xuất ra giỏ hàng 
+                        console.log(listUsers[i].cartUser);
+
+                         let allIdProducts = [];
+                        for (let j = 0; j < listUsers[i].cartUser.length; j++) {
+                            //lọc các phần tử ra này
+                         allIdProducts.push(listUsers[i].cartUser[j].id);
+                            //lấy tất cả id ra
+                        }
+                        console.log(listUsers[i].cartUser);
+                        //lọc không cho nó trùng nhau.
+                        let filterIdDuplicate=[...new Set(allIdProducts)];
+                       let resultFilter=[];
+                        for (let k = 0; k < filterIdDuplicate .length; k++) {
+                               for (let m = 0; m < listUsers[i].cartUser.length; m++) {
+                                
+                                if(filterIdDuplicate[k]==listUsers[i].cartUser[m].id){
+                                    resultFilter.push(listUsers[i].cartUser[m])
+                                    break;
+                                }
+                               }
+                        }
+                       console.log(resultFilter) //đã lọc xong rồi đem đi render;
+                        
+                         result = "";
+                       for (let n = 0; n < resultFilter .length; n++) {
+                            // ở đây mình đã có được  let allIdProducts = [];tất cả id rồi
+                            for (let l = 0; l < allIdProducts.length; l++) {
+                                if(allIdProducts[l]==resultFilter[n].id){
+                                    resultFilter[n].quatity=++resultFilter[n].quatity;
+                                }
+                                
+                            }
+                            result+=
+                            `
+                            <tr>
+                                    <td>${n+1}</td>
+                                    <td><img src="${resultFilter[n].src}" alt=""> </td>
+                                    <td>${resultFilter[n].name} </td>
+                                    <td>${ VND.format(resultFilter[n].price) }</td>
+                                    <td class="quantity">
+                                        <span class="material-symbols-outlined">
+                                            remove
+                                        </span>
+                                            ${resultFilter[n].quatity}
+                                        <span onclick="increase('${resultFilter[n].id}')" class="material-symbols-outlined">
+                                            add
+                                        </span>
+                                    </td>
+                                    <td>
+                                       ${ VND.format(resultFilter[n].price * resultFilter[n].quatity ) }
+                                    </td>
+                                    <td>
+                                        <span class="material-symbols-outlined">
+                                            delete
+                                        </span>
+                                    </td>
+                            </tr>  
+                                        `
+                       }
+                       document.getElementById("render").innerHTML=
+                       `
+                        <tr>
+                            <th> STT </th>
+                            <th> Ảnh Sản phẩm </th>
+                            <th> Tên Sản phẩm </th>
+                            <th> Giá </th>
+                            <th> Số lượng </th>
+                            <th> Tiền </th>
+                            <th> Xoá </th>
+                        </tr> 
+                        ${result}
+                       `
+                       result="";
+                    }
+            
+           }
+           
+        }
+        showCartUser();
+        // function tăng số lượng sản phẩm 
+        function increase(idProduct) {
+                console.log(idProduct);
+                 let listUsers = JSON.parse(localStorage.getItem("listUser"));
+                 let idLogin = localStorage.getItem("checkLogin");
+                 for (let i = 0; i < listUsers.length; i++) {
+                   if(idLogin==listUsers[i].idUser){
+                        //lay ra listUsers[i].cartUser
+                        for (let j = 0; j < listUsers[i].cartUser.length; j++) {
+                            if(idProduct== listUsers[i].cartUser[j].id){
+                                listUsers[i].cartUser[j].quatity=++listUsers[i].cartUser[j].quatity;
+                                localStorage.setItem("listUser",JSON.stringify(listUsers));
+                                showCartUser();
+                                return;
+                            }
+                            
+                        }
+                   }
+                    
+                 }
+
+            }
+    </script>
+
+</body>
+
+</html>

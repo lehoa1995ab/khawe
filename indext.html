@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.2.0/fonts/remixicon.css" rel="stylesheet">
+</head>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        background:C6E0D3;
+    }
+
+    .link-list {
+       display: block;
+        display:flex;
+        background-color: rgba(5, 5, 5, 0.541);
+        color: rgb(231, 218, 218);
+        font-size: 1rem;
+        font-weight: 100;
+        text-align:right;
+        gap: 50px;
+        padding: 10px;
+
+    }
+    .logo {
+        width: 100%;
+        height: 40%;
+        display: flex;
+        background-color: rgb(111, 110, 33);
+        color: rgb(231, 218, 218);
+        font-size: 1rem;
+        font-weight: 100;
+        text-align: center;
+        justify-content: center;
+        gap: 100px;
+        padding: 15px;
+    }
+    .header {
+        width: 100%;
+        height: 30%;
+        display: flex;
+        background-color: rgb(136, 135, 84);
+        color: rgb(231, 218, 218);
+        font-size: 1rem;
+        font-weight: 100;
+        /* text-align: center;
+        justify-content: center; */
+        gap: 150px;
+        padding:10px;
+    }
+    .imageInfo {
+        display: flex;
+        flex-wrap: wrap;
+        background-color: antiquewhite;
+    }
+    .text1{
+        flex: 2;
+    }
+    .text1 img{
+        width: 100%;
+        height: 600px;
+    }
+    .text2{
+        flex: 1;
+    }
+
+
+    .listbooks {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        margin-top: 100px;
+        gap: 20px;
+        background-color: aqua;
+
+    }
+
+    .listbooks .book-item {
+        width: 300px;
+        height: 400px;
+        border: 1px solid black;
+        border-radius: 5px;
+
+    }
+
+    .book-item {
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    .book-item-img img {
+        height: 100%;
+        width: 100%;
+        object-fit: cover;
+    }
+
+    .product-item .title-name {
+        text-align: center;
+        color: tomato;
+        margin-top: 5px;
+    }
+
+    .book-item .cart-item {
+        display: flex;
+        justify-content: space-around;
+        margin-top: 30px;
+    }
+
+</style>
+
+<body>
+    <div class="link-list">
+        <div href="" onclick="login()">Đăng nhập</div>
+        <div href="" onclick="register()">Đăng ký</div>
+        <div href="" onclick="pay()">Thanh toán</div>
+    </div>
+    <div class="logo">
+        <h1>Bookstory</h1>
+        <div href="" onclick="gh()" class="ri-truck-line">GIAO HÀNG FREE</div>
+        <div href="" onclick="dt()" class="ri-text-wrap">ĐỔI TRẢ FREE</div>
+        <div href="" onclick="ht()" class="ri-questionnaire-fill">HỖ TRỢ</div>
+        <div href="" onclick="ph()" class="ri-feedback-line">PHẢN HỒI</div>
+        <div class="button">
+            <button><i class="ri-shopping-cart-line"></i></button>
+            <span>Sản phẩm</span>
+        </div>
+    </div>
+    <div class="header">
+        <div  class="section"href="" onclick=" renderListBooks()">TRANG CHỦ</div>
+        <div href="" onclick="gt()">GIỚI THIỆU</div>
+        <div href="" onclick="tt()">SẢN PHẨM</div>
+        <div href="" onclick="tt()">TIN TỨC</div>
+        <div href="" onclick="lh()">LIÊN HỆ</div>
+        <div>
+            <input type="datetime" name="" id="" placeholder="Tìm kiếm">
+            <i class="ri-search-line"></i>
+        </div>
+    </div>
+    <div class="imageInfo">
+        <div class="text1">
+            <h2>KHO TÀNG TRI THỨC</h2>
+            <img src="./img/anhă.avif" alt="">
+        </div>
+        <div class="text2">
+            <h3>MỖI NGÀY MỘT CUỐN SÁCH</h3>
+            <img src="./img/anhăâ.avif" alt="">
+        </div>
+    </div>
+    <div>
+        <div class="listbooks" id="listbooks">
+            <div class="book-item">
+                <div class="book-item-img">
+                    <img src="" alt="">
+                </div>
+                <p class="title-name"> </p>
+                <div class="cart-item">
+                    <span> PRICE : 250000đ </span>
+                    <span class="ri-shopping-cart-line"></span>
+                </div>
+            </div>
+        </div>
+        <div></div>
+        <script>
+            let listbooks1 = [
+                {
+                    src: "img/Sách Chính trị – pháp luật;/ Luật doanh nghiệp .jpeg",
+                    name: "Luật doanh nghiệp",
+                    price: 100000,
+                    type: "Sách Chính trị – pháp luật"
+                },
+                {
+                    src: "img/Sách Chính trị – pháp luật;/Bàn Về Tinh Thần Pháp Luật (Tái Bản 2023) .jpeg",
+                    name: "Bàn Về Tinh Thần Pháp Luật ",
+                    price: 100000,
+                    type: "Sách Chính trị – pháp luật"
+                },
+                {
+                    src: "img/Sách Chính trị – pháp luật;/Bình luận án - Các tranh chấp điển hình trong quản trị công ty .jpeg",
+                    name: "Bình luận án ",
+                    price: 100000,
+                    type: "Sách Chính trị – pháp luật"
+                },
+                {
+                    src: "img/Sách Chính trị – pháp luật;/Bộ Luật Tố Tụng Dân Sự.jpeg",
+                    name: "Bộ Luật Tố Tụng Dân Sự",
+                    price: 100000,
+                    type: "Sách Chính trị – pháp luật"
+                },
+
+                {
+                    src: "img/Sách Chính trị – pháp luật;/Bộ luật lao động 2019 và một số văn bản hướng dẫn thi hành.jpeg",
+                    name: "Bộ luật lao động 2019",
+                    price: 100000,
+                    type: "Sách Chính trị – pháp luật"
+                },
+
+                {
+                    src: "img/Sách Chính trị – pháp luật;/Cẩm nang tra cứu pháp luật về doanh nghiệp.jpeg",
+                    name: "Pháp luật về doanh nghiệp",
+                    price: 100000,
+                    type: "Sách Chính trị – pháp luật"
+                },
+                {
+                    src: "img/Sách Chính trị – pháp luật;/Điểm mới của Luật Doanh nghiệp năm 2020 dành cho doanh nghiệp.jpeg",
+                    name: "Điểm mới của Luật Doanh nghiệp ",
+                    price: 100000,
+                    type: "Sách Chính trị – pháp luật"
+                },
+                {
+                    src: "img/Sách Chính trị – pháp luật;/Luật thuế.jpeg",
+                    name: "Luật thuế",
+                    price: 100000,
+                    type: "Sách Chính trị – pháp luật"
+                },
+                {
+                    src: "img/Sách Chính trị – pháp luật;/Pháp Luật Đại Cương (Tái Bản).webp",
+                    name: "Pháp Luật Đại Cương (Tái Bản)",
+                    price: 100000,
+                    type: "Sách Chính trị – pháp luật"
+                },
+                {
+                    src: "img/Sách Chính trị – pháp luật;/Quyền Lực.jpeg",
+                    name: "Quyền Lực",
+                    price: 100000,
+                    type: "Sách Chính trị – pháp luật"
+                },
+                {
+                    src: "img/Sách Chính trị – pháp luật;/Sách Bác Hồ - Bác Hồ Với Học Sinh, Sinh Viên.jpeg",
+                    name: "Sách Bác Hồ",
+                    price: 100000,
+                    type: "Sách Chính trị – pháp luật"
+                },
+                {
+                    src: "img/Sách Chính trị – pháp luật;/Sách Chính sách pháp luật - Những vấn đề lý luận và thực tiễn.jpeg",
+                    name: "Luật doanh nghiệp",
+                    price: 100000,
+                    type: "Sách Chính trị – pháp luật"
+                },
+                {
+                    src: "img/Sách Chính trị – pháp luật;/Quyền Lực.jpeg",
+                    name: "Quyền Lực",
+                    price: 100000,
+                    type: "Sách Chính trị – pháp luật"
+                },
+                {
+                    src: "img/Sách Giáo trình/[Phiên chợ sách cũ] Giáo Trình Quản Trị Học.jpeg",
+                    name: "Giáo Trình Quản Trị Học",
+                    price: 0,
+                    type: "Sách Giáo trình"
+                },
+                {
+                    src: "img/Sách Giáo trình/Click Tiếng Việt Trình Độ A - Tập 2.jpeg",
+                    name: "Click Tiếng Việt Trình Độ A ",
+                    price: 0,
+                    type: "Sách Giáo trình"
+                },
+                {
+                    src: "img/Sách Giáo trình/Giáo Trình Auto Card - Lý Thuyết Và Thực Hành.jpeg",
+                    name: "Giáo Trình Auto Card",
+                    price: 0,
+                    type: "Sách Giáo trình"
+                },
+                {
+                    src: "img/Sách Giáo trình/Giáo Trình Luật Quốc Tế.jpeg",
+                    name: "Giáo Trình Luật Quốc Tế",
+                    price: 0,
+                    type: "Sách Giáo trình"
+                },
+                {
+                    src: "img/Sách Giáo trình/Giáo Trình C++ Và Lập Trình Hướng Đối Tượng.jpeg",
+                    name: "Giáo Trình C++",
+                    price: 0,
+                    type: "Sách Giáo trình"
+                },
+                {
+                    src: "img/Sách Giáo trình/Giáo Trình Chủ Nghĩa Xã Hội Khoa Học (Dành Cho Bậc Đại Học Hệ Chuyên Lý Luận Chính Trị).jpeg",
+                    name: "Giáo Trình Chủ Ngha Xã Hội Khoa Học ",
+                    price: 0,
+                    type: "Sách Giáo trình"
+                },
+                {
+                    src: "img/Sách Giáo trình/Giáo Trình Ngữ Pháp Tiếng Anh (Trình Độ Sơ - Trung Cấp).jpeg",
+                    name: "Giáo Trình Ngữ Pháp Tiếng Anh",
+                    price: 0,
+                    type: "Sách Giáo trình"
+                },
+                {
+                    src: "img/Sách Giáo trình/Giáo Trình Quản Trị Cơ Sở Lưu Trú Du Lịch.jpeg",
+                    name: "Giáo Trình Quản Trị Cơ Sở Lưu Trú Du Lịch",
+                    price: 0,
+                    type: "Sách Giáo trình"
+                },
+                {
+                    src: "img/Sách Giáo trình/Giáo Trình Hán Ngữ Boya II - Trung Cấp (Tập 1).jpeg",
+                    name: "Giáo Trình Hán Ngữ Boya II - Trung Cấp ",
+                    price: 0,
+                    type: "Sách Giáo trình"
+                },
+                {
+                    src: "img/Sách Giáo trình/Giáo Trình Marathon Nâng Cao - Dành Cho Những Chân Chạy Sẵn Sàng Tập Luyện Chăm Chỉ Và Bài Bản.jpeg",
+                    name: "Giáo Trình Marathon Nâng Cao",
+                    price: 0,
+                    type: "Sách Giáo trình"
+                },
+                {
+                    src: "img/Sách Giáo trình/Giáo Trình Quản Trị Chiến Lược Trong Tổ Chức Du Lịch.jpeg",
+                    name: "Giáo Trình Quản Trị Chiến Lược Trong Tổ Chức Du Lịch",
+                    price: 0,
+                    type: "Sách Giáo trình"
+                },
+                {
+                    src: "img/Sách Giáo trình/Giáo Trình Thực Hành Lái Xe Cơ Bản.gif",
+                    name: "Giáo Trình Thực Hành Lái Xe Cơ Bản",
+                    price: 0,
+                    type: "Sách Giáo trình"
+                },
+                {
+                    src: "img/Sách Giáo trình/Giáo Trình Thực Hành PIC - Vi Điều Khiển Và Ứng Dụng.jpeg",
+                    name: "Giáo Trình Thực Hành PIC - Vi Điều Khiển Và Ứng Dụng",
+                    price: 0,
+                    type: "Sách Giáo trình"
+                },
+                {
+                    src: "img/Sách Giáo trình/Giáo Trình Triết Học Mác - Lênin (Dành Cho Bậc Đại Học Hệ Chuyên Lý Luận Chính Trị).jpeg",
+                    name: "Giáo Trình Triết Học Mác - Lênin ",
+                    price: 0,
+                    type: "Sách Giáo trình"
+                },
+                {
+                    src: "img/Sách Giáo trình/Giáo Trình Tư Tưởng Hồ Chí Minh (Dành Cho Bậc Đại Học Hệ Chuyên Lý Luận Chính Trị).jpeg",
+                    name: "Giáo Trình Tư Tưởng Hồ Chí Minh ",
+                    price: 0,
+                    type: "Sách Giáo trình"
+                },
+                {
+                    src: "img/Sách Giáo trình/Giáo Trình Điện Tử Thực Hành.jpeg",
+                    name: "Giáo Trình Điện Tử Thực Hành",
+                    price: 0,
+                    type: "Sách Giáo trình"
+                },
+                {
+                    src: "img/Sách Khoa học công nghệ – Kinh tế;/Bứt Phá Giới Hạn - Phụ Nữ, Lãnh Đạo, Và Thành Công Theo Cách Của Riêng Mình.jpeg",
+                    name: "Bứt Phá Giới Hạn ",
+                    price: 0,
+                    type: "Sách Khoa học công nghệ – Kinh tế"
+                },
+                {
+                    src: "img/Sách Khoa học công nghệ – Kinh tế;/Cách Mạng Siêu Nhân Hóa - Công Nghệ Y Học Và Xu Hướng Kinh Tế Chia Sẻ.jpeg",
+                    name: "Cách Mạng Siêu Nhân Hóa ",
+                    price: 0,
+                    type: "Sách Khoa học công nghệ – Kinh tế"
+                },
+                {
+                    src: "img/Sách Khoa học công nghệ – Kinh tế;/Cuộc Chiến Công Nghệ Số.jpeg",
+                    name: "Cuộc Chiến Công Nghệ Số",
+                    price: 0,
+                    type: "Sách Khoa học công nghệ – Kinh tế"
+                },
+                {
+                    src: "img/Sách Khoa học công nghệ – Kinh tế;/FINTECH 4.0 .jpeg",
+                    name: "FINTECH 4.0",
+                    price: 0,
+                    type: "Sách Khoa học công nghệ – Kinh tế"
+                },
+                {
+                    src: "img/Sách Khoa học công nghệ – Kinh tế;/Nghệ Thuật Ghi Chép 1 Phút.jpeg",
+                    name: "Nghệ Thuật Ghi Chép 1 Phút",
+                    price: 0,
+                    type: "Sách Khoa học công nghệ – Kinh tế"
+                },
+                {
+                    src: "img/Sách Khoa học công nghệ – Kinh tế;/Nghệ Thuật Kaizen Tuyệt Vời Của Toyota.jpeg",
+                    name: "Nghệ Thuật Kaizen Tuyệt Vời Của Toyota",
+                    price: 0,
+                    type: "Sách Khoa học công nghệ – Kinh tế"
+                },
+                {
+                    src: "img/Sách Khoa học công nghệ – Kinh tế;/Nuôi Dạy Trẻ Dưới Góc Nhìn Kinh Tế Học.jpeg",
+                    name: "Nuôi Dạy Trẻ Dưới Góc Nhìn Kinh Tế Học",
+                    price: 0,
+                    type: "Sách Khoa học công nghệ – Kinh tế"
+                },
+
+                {
+                    src: "img/Sách Khoa học công nghệ – Kinh tế;/Startup Science - Khoa Học Về Khởi Nghiệp.jpeg",
+                    name: "Startup Science - Khoa Học Về Khởi Nghiệp",
+                    price: 0,
+                    type: "Sách Khoa học công nghệ – Kinh tế"
+                },
+                {
+                    src: "img/Sách Khoa học công nghệ – Kinh tế;/Ứng Dụng Công Nghệ Truy Dấu Tiếp Xúc Để Ứng Phó Với Covid-19.jpeg",
+                    name: "Ứng Dụng Công Nghệ Truy Dấu Tiếp Xúc Để Ứng Phó Với Covid-19",
+                    price: 0,
+                    type: "Sách Khoa học công nghệ – Kinh tế"
+                },
+                {
+                    src: "img/Sách Khoa học công nghệ – Kinh tế;/Vượt Qua Phản Đối- Nghệ Thuật Và Khoa Học Thương Thảo Trong Bán Hàng.jpeg",
+                    name: "Vượt Qua Phản Đối",
+                    price: 0,
+                    type: "Sách Khoa học công nghệ – Kinh tế"
+                },
+                {
+                    src: "img/Sách Khoa học công nghệ – Kinh tế;/Lược Sử Thời Gian.png",
+                    name: "Lược Sử Thời Gian",
+                    price: 0,
+                    type: "Sách Khoa học công nghệ – Kinh tế"
+                },
+                {
+                    src: "img/Sách Sách thiếu nhi/Bách Khoa Thư Khủng Long Dành Cho Thiếu Nhi (Tái Bản 2022).jpeg",
+                    name: "Bách Khoa Thư Khủng Long Dành Cho Thiếu Nhi",
+                    price: 0,
+                    type: "Sách thiếu nhi"
+                },
+                {
+                    src: "img/Sách Sách thiếu nhi/Những Truyện Hay Viết Cho Thiếu Nhi - Nguyễn Huy Tưởng (Tái Bản 2019).jpeg",
+                    name: "Những Truyện Hay Viết Cho Thiếu Nhi ",
+                    price: 0,
+                    type: "Sách thiếu nhi"
+                },
+                {
+                    src: "img/Sách Sách thiếu nhi/Những Truyện Hay Viết Cho Thiếu Nhi - Thy Ngọc (Tái Bản 2020).jpeg",
+                    name: "Những Truyện Hay Viết Cho Thiếu Nhi",
+                    price: 0,
+                    type: "Sách thiếu nhi"
+                },
+                {
+                    src: "img/Sách Sách thiếu nhi/Những Truyện Hay Viết Cho Thiếu Nhi - Tô Hoài (Tái Bản 2019).jpeg",
+                    name: "Những Truyện Hay Viết Cho Thiếu Nhi  ",
+                    price: 0,
+                    type: "Sách thiếu nhiê"
+                },
+                {
+                    src: "img/Sách Sách thiếu nhi/Những Truyện Hay Viết Cho Thiếu Nhi - Vũ Tú Nam (Tái Bản 2020).jpeg",
+                    name: "Những Truyện Hay Viết Cho Thiếu Nhi ",
+                    price: 0,
+                    type: "Sách thiếu nhi"
+                },
+                {
+                    src: "img/Sách Sách thiếu nhi/Những Truyện Hay Viết Cho Thiếu Nhi - Xuân Quỳnh (Tái Bản 2019).jpeg",
+                    name: "Những Truyện Hay Viết Cho Thiếu Nhi ",
+                    price: 0,
+                    type: "Sách thiếu nhi"
+                },
+                {
+                    src: "img/Sách Sách thiếu nhi/Rơm Rạ Lấm Lem - Truyện Dài Thiếu Nhi Độ Tuổi 6 Đến 15.jpeg",
+                    name: "Rơm Rạ Lấm Lem ",
+                    price: 0,
+                    type: "Sách thiếu nhi"
+                },
+                {
+                    src: "img/Sách Sách thiếu nhi/Thơ Cho Thiếu Nhi.jpeg",
+                    name: "Thơ Cho Thiếu Nhi",
+                    price: 0,
+                    type: "Sách thiếu nhi"
+                },
+                {
+                    src: "img/Sách Sách thiếu nhi/Truyện Tranh Ngụ Ngôn Dành Cho Thiếu Nhi- Chuột, Gà Trống Và Mèo (Song Ngữ Anh - Việt).jpeg",
+                    name: "Truyện Tranh Ngụ Ngôn Dành Cho Thiếu Nhi- Chuột, Gà Trống Và Mèo",
+                    price: 0,
+                    type: "Sách thiếu nhi"
+                },
+                {
+                    src: "img/Sách Sách thiếu nhi/Truyện Tranh Ngụ Ngôn Dành Cho Thiếu Nhi- Lừa Đội Lốt Sư Tử (Song Ngữ Anh - Việt).jpeg",
+                    name: "Truyện Tranh Ngụ Ngôn Dành Cho Thiếu Nhi- Lừa Đội Lốt Sư Tử",
+                    price: 0,
+                    type: "Sách thiếu nhi"
+                },
+                {
+                    src: "img/Sách Sách thiếu nhi/Truyện Tranh Ngụ Ngôn Dành Cho Thiếu Nhi- Sói Và Sóc (Song Ngữ Anh - Việt).jpeg",
+                    name: "Truyện Tranh Ngụ Ngôn Dành Cho Thiếu Nhi- Sói Và Sóc",
+                    price: 0,
+                    type: "Sách thiếu nhi"
+                },
+                {
+                    src: "img/Sách Sách thiếu nhi/Truyện Tranh Ngụ Ngôn Dành Cho Thiếu Nhi- Sư Tử Và Chuột Nhắt (Song Ngữ Anh - Việt).jpeg",
+                    name: "Truyện Tranh Ngụ Ngôn Dành Cho  Sư Tử Và Chuột Nhắt",
+                    price: 0,
+                    type: "Sách thiếu nhi"
+                },
+                {
+                    src: "img/Sách Sách thiếu nhi/Tuyển Tập Văn Học Viết Cho Thiếu Nhi - Tô Hoài - 3 - Truyện Các Gương Anh Hùng Cách Mạng.jpeg",
+                    name: "Tuyển Tập Văn Học Viết Cho Thiếu Nhi",
+                    price: 0,
+                    type: "Sách thiếu nhi"
+                },
+                {
+                    src: "img/Sách Sách thiếu nhi/Tuyển Tập Truyện Hay Dành Cho Thiếu Nhi 2 (Tái Bản 2020).jpeg",
+                    name: "Tuyển Tập Truyện Hay Dành Cho Thiếu Nhi 2",
+                    price: 0,
+                    type: "Sách thiếu nhi"
+                },
+                {
+                    src: "img/Sách Sách thiếu nhi/Tủ Sách Vàng - Tác Phẩm Chọn Lọc Dành Cho Thiếu Nhi- Từ Giã Tuổi Thơ.jpeg",
+                    name: "Tủ Sách Vàng",
+                    price: 0,
+                    type: "Sách thiếu nhi"
+                },
+                {
+                    src: "img/Sách Sách thiếu nhi/Tủ Sách Đoàn - Hội - Đội Và Kỹ Năng Sinh Hoạt Thiếu Nhi - 99 Trò Chơi Vận Động (2022).jpeg",
+                    name: "Tủ Sách Đoàn",
+                    price: 0,
+                    type: "Sách thiếu nhi"
+                },
+                {
+                    src: "img/Sách Văn học nghệ thuật/60 Năm Văn Học Đương Đại Trung Quốc.jpeg",
+                    name: "60 Năm Văn Học Đương Đại Trung Quốc",
+                    price: 0,
+                    type: "Sách Văn học nghệ thuật"
+                },
+                {
+                    src: "img/Sách Văn học nghệ thuật/Câu Chuyện Nghệ Thuật.jpeg",
+                    name: "Câu Chuyện Nghệ Thuật",
+                    price: 0,
+                    type: "Sách Văn học nghệ thuật"
+                },
+                {
+                    src: "img/Sách Văn học nghệ thuật/Chuyện Kể Về Doanh Nhân Thế Giới - Danh Nhân Văn Học Nghệ Thuật.jpeg",
+                    name: "Chuyện Kể Về Doanh Nhân Thế Giới",
+                    price: 0,
+                    type: "Sách Văn học nghệ thuật"
+                },
+                {
+                    src: "img/Sách Văn học nghệ thuật/Đổi Mới Và Phát Triển Phê Bình Văn Học, Nghệ Thuật Việt Nam Hiện Nay.jpeg",
+                    name: "Đổi Mới Và Phát Triển Phê Bình Văn Học, Nghệ Thuật",
+                    price: 0,
+                    type: "Sách Văn học nghệ thuật"
+                },
+                {
+                    src: "img/Sách Văn học nghệ thuật/Lịch Sử Tiền Tệ - The History Of Money.jpeg",
+                    name: "Lịch Sử Tiền Tệ",
+                    price: 0,
+                    type: "Sách Văn học nghệ thuật"
+                },
+                {
+                    src: "img/Sách Văn học nghệ thuật/Lịch Sử Việt Nam Từ Nguồn Gốc Đến Thế Kỷ XIX (Bìa Cứng).jpeg",
+                    name: "Lịch Sử Việt Nam",
+                    price: 0,
+                    type: "Sách Văn học nghệ thuật"
+                },
+                {
+                    src: "img/Sách Văn học nghệ thuật/Nghệ Thuật Chăm Pa Nghiên Cứu Kiến Trúc Và Điêu Khắc Đền Tháp.jpeg",
+                    name: "Nghệ Thuật Chăm Pa",
+                    price: 0,
+                    type: "Sách Văn học nghệ thuật"
+                },
+                {
+                    src: "img/Sách Văn học nghệ thuật/Nghệ Thuật Nói Chuyện Và Xã Giao Hằng Ngày (Tái Bản 2019).jpeg",
+                    name: "Nghệ Thuật Nói Chuyện Và Xã Giao Hằng Ngày",
+                    price: 0,
+                    type: "Sách Văn học nghệ thuật"
+                },
+                {
+                    src: "img/Sách Văn học nghệ thuật/Nghệ Thuật Sống Vững Vàng.jpeg",
+                    name: "Nghệ Thuật Sống Vững Vàng",
+                    price: 0,
+                    type: "Sách Văn học nghệ thuật"
+                },
+                {
+                    src: "img/Sách Văn học nghệ thuật/Nghệ Thuật Thăng Tiến Nơi Công Sở - Thriving At Work.jpeg",
+                    name: "Nghệ Thuật Thăng Tiến Nơi Công Sở ",
+                    price: 0,
+                    type: "Sách Văn học nghệ thuật"
+                },
+                {
+                    src: "img/Sách Văn học nghệ thuật/Tìm Hiểu Xã Hội Việt Nam Thời Lý - Trần.jpeg",
+                    name: "Tìm Hiểu Xã Hội Việt Nam Thời Lý - Trần",
+                    price: 0,
+                    type: "Sách Văn học nghệ thuật"
+                },
+                {
+                    src: "img/Sách Văn học nghệ thuật/Văn Hóa - Văn Học Dưới Góc Nhìn Liên Không Gian.jpeg",
+                    name: "Văn Hóa - Văn Học Dưới Góc Nhìn Liên Không Gian",
+                    price: 0,
+                    type: "Sách Văn học nghệ thuật"
+                },
+                {
+                    src: "img/Sách Văn học nghệ thuật/Văn Hóa Người Việt Vùng Tây Nam Bộ (2022).jpeg",
+                    name: "Văn Hóa Người Việt Vùng Tây Nam Bộ",
+                    price: 0,
+                    type: "Sách Văn học nghệ thuật"
+                },
+                {
+                    src: "img/Sách Văn học nghệ thuật/Văn Học Nghệ Thuật - Đôi Điều Nói Lại.jpeg",
+                    name: "Văn Học Nghệ Thuật",
+                    price: 0,
+                    type: "Sách Văn học nghệ thuật"
+                },
+                {
+                    src: "img/Sách Văn học nghệ thuật/Văn Học Nhật Bản - Vẻ Đẹp Mong Manh Và Bất Tận.jpeg",
+                    name: "Văn Học Nhật Bản",
+                    price: 0,
+                    type: "Sách Văn học nghệ thuật"
+                },
+                {
+                    src: "img/Sách Văn học nghệ thuật/Văn Học Tuổi 20 - Ngủ Ngon Nhé, Nàng Thơ.jpeg",
+                    name: "Văn Học Tuổi 20",
+                    price: 0,
+                    type: "Sách Văn học nghệ thuật"
+                },
+                {
+                    src: "img/Sách Văn học nghệ thuật/Văn Học Việt Nam Đổi Mới - Từ Những Điểm Nhìn Tham Chiếu.jpeg",
+                    name: "Văn Học Việt Nam Đổi Mới",
+                    price: 0,
+                    type: "Sách Văn học nghệ thuật"
+                }
+            ]
+            function uuid() {
+                return new Date().getMilliseconds() + Math.floor(Math.random() * 9999999999999);
+            }
+            for (let i = 0; i < listbooks1.length; i++) {
+                //listbooks[i].quatity = 0;
+                listbooks1[i].id = uuid();
+            }
+            console.log(listbooks1)
+            localStorage.setItem("listBooks", JSON.stringify(listbooks1))
+            let listBooks = JSON.parse(localStorage.getItem("listBooks"));
+            function renderListBooks() {
+                let result = "";
+                for (let i = 0; i < listBooks.length; i++) {
+                    result +=
+                        `
+                    <div class="product-item">
+                        <div class="product-item-img">
+                            <img src="${listBooks[i].src}" alt="">
+                        </div>
+                        <p class="title-name"> ${listBooks[i].name} </p>
+                        <div class="cart-item">
+                            <span> PRICE : ${listBooks[i].price}</span>
+                            <span onclick=addToCart(${listBooks[i].id})><i class="ri-shopping-cart-line"></i>
+                            </span>
+                        </div>
+                    </div>
+                `
+                }
+                document.getElementById("listbooks").innerHTML = result;
+            }
+            renderListBooks();
+        </script>
+</body>
+
+</html>
